@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameAClean", "GameAClean\GameAClean.vcxproj", "{BBBD13DE-3831-4B9D-B64D-A2278445279C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Debug|x64.ActiveCfg = Debug|x64
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Debug|x64.Build.0 = Debug|x64
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Debug|x86.ActiveCfg = Debug|Win32
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Debug|x86.Build.0 = Debug|Win32
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Release|x64.ActiveCfg = Release|x64
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Release|x64.Build.0 = Release|x64
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Release|x86.ActiveCfg = Release|Win32
+		{BBBD13DE-3831-4B9D-B64D-A2278445279C}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
