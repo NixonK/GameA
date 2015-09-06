@@ -11,9 +11,10 @@ TODO (in descending order of wishlist priority):
 * monster class
  * follows player
  * has health points 
-* handle hurtbox interaction with monster class
+* handle hurtbox interaction with monster class, observer class
 * add shooting mechanism (add new controls to KeyHandler) with hitbox
 * world screens to implement world traversal
  * portals, add portal usability to KeyHandler
 * platform data location
  * implement proper player-platform collision 
+* refactor Game, KeyHandler, Player class into singleton
