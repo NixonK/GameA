@@ -48,6 +48,15 @@ Player::Player()
 	//const double gravity;
 }
 
+Player::~Player()
+{
+	SDL_DestroyTexture(spriteSheet);
+	spriteSheet = nullptr;
+	int i = 0;
+	for (i; i < 1000; i++)
+		std::cout << "player deleted" << std::endl;
+}
+
 void Player::LoadSpriteTexture(SDL_Renderer *spriteRenderer)
 {
 	spriteSheet = LoadTexture("sprite.png", spriteRenderer);
@@ -205,10 +214,4 @@ SDL_Rect Player::GetLocRect()
 SDL_Texture *Player::GetSpriteSheet()
 {
 	return spriteSheet;
-}
-
-void Player::CleanUp()
-{
-	SDL_DestroyTexture(spriteSheet);
-	spriteSheet = nullptr;
 }

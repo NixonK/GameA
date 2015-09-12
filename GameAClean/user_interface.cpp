@@ -20,6 +20,17 @@ UserInterface::UserInterface()
 	imgFlags = NULL;
 }
 
+UserInterface::~UserInterface()
+{
+	SDL_DestroyWindow(window);
+	window = nullptr;
+
+	SDL_DestroyRenderer(renderer);
+	renderer = nullptr;
+
+	SDL_Quit();
+}
+
 bool UserInterface::Init()
 {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
@@ -60,17 +71,6 @@ SDL_Texture *UserInterface::LoadTexture(std::string filePath, SDL_Renderer * ren
 	SDL_FreeSurface(surface);
 
 	return texture;
-}
-
-void UserInterface::CleanUp()
-{
-	SDL_DestroyWindow(window);
-	window = nullptr;
-
-	SDL_DestroyRenderer(renderer);
-	renderer = nullptr;
-
-	SDL_Quit();
 }
 
 SDL_Renderer *UserInterface::GetRenderer()
