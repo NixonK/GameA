@@ -21,8 +21,7 @@ int main(int argc, char * argv[])
 
 	(*mainGame).Execute((*mainUI).GetRenderer());
 
-	(*(*mainGame).GetPlayer()).CleanUp();
-	(*mainUI).CleanUp();
+	//(*(*mainGame).GetPlayer()).CleanUp(); // player gets deleted on exit
 
 
 	delete mainUI;

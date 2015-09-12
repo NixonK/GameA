@@ -16,12 +16,18 @@ Game::Game()
 	isRunning = true;
 	//SDL_Event event;
 	//KeyHandler keyHandler;
-	//float FPS;
+	// float FPS = 60;
 	FRAME_TIME = (1.0f / FPS) * 1000.0f;  // milliseconds per frame
 	clock = 0;
 	deltaTime = 0;
 	renderDelay = 0;
 	//Player *mainPlayer;
+}
+
+Game::~Game()
+{
+	// Player object loaded with automatic storage duration; will be deleted when out of scope.
+	// Player is loaded with automatic storage, no need to manually delete. 
 }
 
 Player *Game::GetPlayer()
@@ -31,7 +37,6 @@ Player *Game::GetPlayer()
 
 void Game::Execute(SDL_Renderer *SDLRenderer)
 {
-
 	// Select the color for drawing. It is set to red here.
 	SDL_SetRenderDrawColor(SDLRenderer, 255, 75, 75, 255);
 	// Clear the entire screen to our selected color.
@@ -58,11 +63,13 @@ void Game::Execute(SDL_Renderer *SDLRenderer)
 				isRunning = false;
 				break;
 			}
-			if (event.key.keysym.sym == SDLK_a ||		// a for left movement
-				event.key.keysym.sym == SDLK_d ||		// d for right movement
-				event.key.keysym.sym == SDLK_SPACE)		// space for jump, vertical movement
-			{
-				keyHandler.LogEvent(event);
+			if ((event.type == SDL_KEYDOWN) || (event.type = SDL_KEYUP)) {
+				if (event.key.keysym.sym == SDLK_a ||		// a for left movement
+					event.key.keysym.sym == SDLK_d ||		// d for right movement
+					event.key.keysym.sym == SDLK_SPACE)		// space for jump, vertical movement
+				{
+					keyHandler.LogEvent(event);
+				}
 			}
 		}
 		keyHandler.GiveInstructions(&mainPlayer);

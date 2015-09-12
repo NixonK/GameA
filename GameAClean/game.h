@@ -29,6 +29,7 @@ protected:
 	Player mainPlayer;
 public:
 	Game();
+	~Game();
 	void Execute(SDL_Renderer *SDLRenderer);
 	Player *GetPlayer();
 };

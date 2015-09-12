@@ -12,6 +12,12 @@
 
 KeyHandler::KeyHandler()
 {
+	keyState = {};
+}
+
+KeyHandler::~KeyHandler()
+{
+
 }
 
 void KeyHandler::LogEvent(SDL_Event event)

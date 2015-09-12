@@ -44,6 +44,7 @@ protected:
 	const double gravity = -.1;
 public:
 	Player();
+	~Player();
 	void LoadSpriteTexture(SDL_Renderer *spriteRenderer);
 
 	void AttemptJump();
@@ -59,8 +60,6 @@ public:
 	SDL_Rect GetStateRect();
 	SDL_Rect GetLocRect();
 	SDL_Texture *GetSpriteSheet();
-
-	void CleanUp();
 };
 
 #endif 
