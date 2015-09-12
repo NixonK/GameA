@@ -16,12 +16,12 @@ Game::Game()
 	isRunning = true;
 	//SDL_Event event;
 	//KeyHandler keyHandler;
-	// float FPS = 60;
+	//float FPS;
 	FRAME_TIME = (1.0f / FPS) * 1000.0f;  // milliseconds per frame
 	clock = 0;
 	deltaTime = 0;
 	renderDelay = 0;
-	Player *mainPlayer;
+	//Player *mainPlayer;
 }
 
 Player *Game::GetPlayer()

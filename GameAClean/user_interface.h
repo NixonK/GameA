@@ -15,19 +15,54 @@
 class UserInterface
 {
 protected:
-	SDL_Window *window;						// window to render textures on
-	const int INIT_SCREEN_WIDTH = 800;		// 
+	// Window to render textures on.
+	SDL_Window *window;	
+
+	// Initial window width and height.
+	const int INIT_SCREEN_WIDTH = 800;		
 	const int INIT_SCREEN_HEIGHT = 400;
+
+	// Window width and height.
 	int screenWidth, screenHeight;
-	float FPS = 60;
+
+	// FPS used for the game.
+	const float FPS = 60;
+
+	// Renderer for the game.
 	SDL_Renderer *renderer;
+
+	// Flag used for checking image initialisation errors.
 	int imgFlags;
+
 public:
+	/**
+	* Constructor that sets rendering components to NULL.
+	*/
 	UserInterface();
+
+	/**
+	* Initialises and creates the game window and renderer.
+	*/
 	bool Init();
+
+	/**
+	* Loads image into the game renderer as a texture.
+	*
+	* @param filePath file path of image to load as texture.
+	* @param renderTarget target of renderer used for the game. 
+	*/
 	SDL_Texture *LoadTexture(std::string filePath, SDL_Renderer *renderTarget);
+	
+	/**
+	* Cleans up pointers and initialised SDL subsystems.
+	*/
 	void CleanUp();
 
+
+
+	/**
+	* Returns pointer to game renderer.
+	*/
 	SDL_Renderer *GetRenderer();
 };
 

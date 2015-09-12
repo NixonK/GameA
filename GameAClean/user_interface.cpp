@@ -13,9 +13,11 @@
 UserInterface::UserInterface()
 {
 	window = nullptr;
-	renderer = nullptr;
+	//const int INIT_SCREEN_WIDTH;
+	//const int INIT_SCREEN_HEIGHT;
 	screenWidth = NULL;
 	screenHeight = NULL;
+	//const float FPS;
 	renderer = nullptr;
 	imgFlags = NULL;
 }
