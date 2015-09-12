@@ -20,28 +20,46 @@ class KeyHandler
 {
 private:
 	// Map with keyboard button code as the key and
-	// Unit8 state of the key (SDL_PRESSED or SDL_RELEASED)
+	// Unit8 state of the key (SDL_PRESSED or SDL_RELEASED).
 	std::map<SDL_Keycode, Uint8> keyState;
 
 public:
 	/**
-	* Constructor for key handling class; initialises keyState map as empty.
-	*/
+	 * Constructor for key handling class; initialises keyState map as empty.
+	 */
 	KeyHandler();
 
 	/**
-	* Destructor for key handling class.
-	*/
+	 * Destructor for key handling class.
+	 */
 	~KeyHandler();
 
 	/**
-	* Loads image into the game renderer as a texture.
-	*
-	* @param event user caused event to be processed
-	*/
+	 * Loads image into the game renderer as a texture.
+	 *
+	 * @param event user caused event to be processed.
+	 */
 	void LogEvent(SDL_Event event);
+
+	/**
+	 * Returns true if keyCode is pressed, false otherwise.
+	 *
+	 * @param keyCode the code for the pressed key.
+	 */
 	bool IsPressed(SDL_Keycode keyCode);
+
+	/**
+	 * Returns true if keyCode is unreleased, false otherwise.
+	 *
+	 * @param keyCode the code for the pressed key.
+	 */
 	bool IsReleased(SDL_Keycode keyCode);
+
+	/**
+ 	 * Pass on instructions in keyState map to player.
+	 *
+	 * @param player the player object in this game.
+	 */
 	void GiveInstructions(Player *player);
 };
 

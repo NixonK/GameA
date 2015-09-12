@@ -19,18 +19,53 @@
 class Game : public UserInterface
 {
 protected:
+	// The status if the game is running.
 	bool isRunning;
+
+	// Event variable of keys.
 	SDL_Event event;
+
+	// KeyHandler class object.
 	KeyHandler keyHandler;
+
+	// Time in between frames.
 	float FRAME_TIME;
+
+	// Clock current milliseconds after starting the game
 	Uint32 clock;
+
+	// Difference in time.
 	Uint32 deltaTime;
+
+	// Delay inbetween renders.
 	Uint32 renderDelay;
+
+	// Player object.
 	Player mainPlayer;
+
 public:
+	/**
+	 * Game class constructor, initialise frame control variables and isRunning.
+	 */
 	Game();
+
+	/**
+	 * Game class destructor.
+	 */
 	~Game();
+
+	/**
+	 * Execute the game.
+	 *
+	 * @param SDLRenderer renderer to render everything onto.
+	 */
 	void Execute(SDL_Renderer *SDLRenderer);
+
+
+
+	/**
+	* Return the player object.
+	*/
 	Player *GetPlayer();
 };
 

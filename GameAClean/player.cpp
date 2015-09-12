@@ -36,7 +36,7 @@ Player::Player()
 
 	screenFloor = spriteLocRect.y;
 
-	numberJumps = 1;
+	// const int numberJumps;
 	//const int jumpDelay;
 	jumpDelayCounter = jumpDelay;
 	jumpDelayed = false;
