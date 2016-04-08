@@ -1,3 +1,9 @@
+.vs
 build/
 SDL/
-SDL2_image-2.0.0/
+SDL2_image-2.0.1/
+*.dll
+x64/
+/*.png
+*.opensdf
+*.sdf

@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.0 FATAL_ERROR )
+cmake_minimum_required( VERSION 3.2 FATAL_ERROR )
 
 project( GameA )
 
@@ -8,28 +8,41 @@ if("${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}")
 endif()
 
 set( GAMEA_SRC
-	 GameAClean/game.cpp
-	 GameAClean/key_handler.cpp
-	 GameAClean/main.cpp
-	 GameAClean/player.cpp
-	 GameAClean/user_interface.cpp )
+	 src/game.cpp
+	 src/key_handler.cpp
+	 src/main.cpp
+	 src/player.cpp
+	 src/user_interface.cpp )
 
 set( GAMEA_HEADERS
-	 GameAClean/game.h
-	 GameAClean/includes.h
-	 GameAClean/key_handler.h
-	 GameAClean/player.h
-	 GameAClean/user_interface.h )
+	 src/game.h
+	 src/includes.h
+	 src/key_handler.h
+	 src/player.h
+	 src/user_interface.h )
 
 add_library( GameA ${GAMEA_SRC} ${GAMEA_HEADERS} )
 
-target_include_directories( GameA PUBLIC ./GameAClean/ )
+target_include_directories( GameA PUBLIC ./src/ )
 target_include_directories( GameA PUBLIC ./SDL/include/
-										 ./SDL2_image-2.0.0/include/ )
+										 ./SDL2_image-2.0.1/include/ )
 
 add_executable( GameAExecutable ${GAMEA_SRC} )
 target_link_libraries( GameAExecutable GameA
-									   ${CMAKE_CURRENT_SOURCE_DIR}/SDL/lib/win32/SDL2.lib
-									   ${CMAKE_CURRENT_SOURCE_DIR}/SDL/lib/win32/SDL2main.lib
-									   ${CMAKE_CURRENT_SOURCE_DIR}/SDL2_image-2.0.0/lib/x86/SDL2_image.lib )
+					   ${CMAKE_CURRENT_SOURCE_DIR}/SDL/lib/x64/SDL2.lib
+					   ${CMAKE_CURRENT_SOURCE_DIR}/SDL/lib/x64/SDL2main.lib
+					   ${CMAKE_CURRENT_SOURCE_DIR}/SDL2_image-2.0.1/lib/x64/SDL2_image.lib )
 
+set( POST_BUILD_FILES
+	 res/sprite.png
+	 SDL/lib/x64/SDL2.dll
+	 SDL2_image-2.0.1/lib/x64/SDL2_image.dll
+	 SDL2_image-2.0.1/lib/x64/libpng16-16.dll
+	 SDL2_image-2.0.1/lib/x64/zlib1.dll )
+
+foreach( res ${POST_BUILD_FILES} )
+	ADD_CUSTOM_COMMAND( TARGET GameA POST_BUILD
+						COMMAND ${CMAKE_COMMAND} -E copy
+						${CMAKE_CURRENT_SOURCE_DIR}/${res}
+						${PROJECT_BINARY_DIR}/${CMAKE_BUILD_TYPE} )
+endforeach()
