@@ -1,7 +1,7 @@
 .vs
 build/
-SDL/
-SDL2_image-2.0.1/
+SDL2-*/
+SDL2_image-*/
 *.dll
 x64/
 /*.png
