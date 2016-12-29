@@ -20,6 +20,9 @@ protected:
 	// Pointer to sprite sheet texture.
 	SDL_Texture *spriteSheet;
 
+	// Sprite sheet file name.
+	const std::string SPRITE_SHEET_FILENAME = "sprite.png";
+
 	// Original sprite sheet width and height.
 	const int SPRITE_SHEET_WIDTH = 24;
 	const int SPRITE_SHEET_HEIGHT = 28;
