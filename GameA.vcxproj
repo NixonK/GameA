@@ -137,9 +137,13 @@
     <ClInclude Include="src\user_interface.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="GameA.ico" />
     <Image Include="res\preview.png" />
     <Image Include="res\sprite.png" />
     <Image Include="res\spriteL.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameA.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

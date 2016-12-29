@@ -2,43 +2,62 @@ cmake_minimum_required( VERSION 3.2 FATAL_ERROR )
 
 project( GameA )
 
-# prohibit in-source builds
+option( SHOW_CONSOLE "Build executable to display console when running." ON )
+
+# Prohibit in-source builds.
 if( "${PROJECT_SOURCE_DIR}" STREQUAL "${PROJECT_BINARY_DIR}" )
 	message( FATAL_ERROR "In-source builds are not allowed, use a separate build directory." )
 endif()
 
-set( GAMEA_SRC
-	 src/*.cpp )
 
-set( GAMEA_HEADERS
-	 src/*.h )
+# Glob source files.
+file( GLOB_RECURSE GAMEA_SRC
+	RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
+	"src/*.cpp"
+)
+file( GLOB_RECURSE GAMEA_HEADERS
+	RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
+	"src/*.h"
+)
+set( SOURCE_FILES ${GAMEA_SRC} ${GAMEA_HEADERS} )
 
-add_library( GameA ${GAMEA_SRC} ${GAMEA_HEADERS} )
 
-if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
-  set( ARCHITECTURE "x64" )
+# Create executable target.
+if( WIN32 )
+	if( SHOW_CONSOLE )
+		add_executable( GameA ${SOURCE_FILES} GameA.rc )
+	else()
+		add_executable( GameA WIN32 ${SOURCE_FILES} GameA.rc )
+	endif()
 else()
-  set( ARCHITECTURE "x86" )
+	message( FATAL_ERROR "${CMAKE_SYSTEM} not supported for GameA." )
 endif()
 
+
+# Find and link import libraries.
 set( CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/" )
+if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+	set( ARCHITECTURE "x64" )
+else()
+	set( ARCHITECTURE "x86" )
+endif()
 find_package( SDL2 REQUIRED )
 find_package( SDL2image REQUIRED )
+target_link_libraries( GameA ${SDL2_LIBRARIES} ${SDL2image_LIBRARIES} )
+target_include_directories( GameA PUBLIC
+	./src/
+	${SDL2_INCLUDE_DIRS}
+	${SDL2image_INCLUDE_DIRS}
+)
 
-target_include_directories( GameA PUBLIC ./src/ )
-target_include_directories( GameA PUBLIC ${SDL2_INCLUDE_DIRS}
-										 ${SDL2image_INCLUDE_DIRS} )
 
-add_executable( GameAExecutable ${GAMEA_SRC} )
-target_link_libraries( GameAExecutable GameA
-					   ${SDL2_LIBRARIES}
-					   ${SDL2image_LIBRARIES} )
-
+# Executable file dependencies.
 set( POST_BUILD_FILES
-	 res/sprite.png
-	 ${SDL2_DLLS}
-	 ${SDL2image_DLLS} )
-
+	res/sprite.png
+	${SDL2_DLLS}
+	${SDL2image_DLLS}
+)
+# Add post-build commands to copy the dependencies to the executable directory.
 foreach( res ${POST_BUILD_FILES} )
 	if( IS_ABSOLUTE ${res} )
 		set( COPY_PATH ${res} )
@@ -47,7 +66,8 @@ foreach( res ${POST_BUILD_FILES} )
 	endif()
 
 	ADD_CUSTOM_COMMAND( TARGET GameA POST_BUILD
-						COMMAND ${CMAKE_COMMAND} -E copy
-						${COPY_PATH}
-						${PROJECT_BINARY_DIR}/${CMAKE_BUILD_TYPE} )
+		COMMAND ${CMAKE_COMMAND} -E copy
+		${COPY_PATH}
+		${PROJECT_BINARY_DIR}/${CMAKE_BUILD_TYPE}
+	)
 endforeach()
