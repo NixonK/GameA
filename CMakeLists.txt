@@ -1,4 +1,4 @@
-cmake_minimum_required( VERSION 3.2 FATAL_ERROR )
+cmake_minimum_required( VERSION 3.6 FATAL_ERROR )
 
 project( GameA )
 
@@ -32,6 +32,7 @@ if( WIN32 )
 else()
 	message( FATAL_ERROR "${CMAKE_SYSTEM} not supported for GameA." )
 endif()
+set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT GameA )
 
 
 # Find and link import libraries.
