@@ -10,7 +10,7 @@ if ["%1"] == ["show_console"] (
 echo Option [show_console]: %SHOW_CONSOLE%
 
 REM Clear old build files and setup new build directory.
-rd /s /q %~dp0\build
+rd /s /q %~dp0\build || exit /b 1
 mkdir %~dp0\build || exit /b 1
 cd %~dp0\build || exit /b 1
 

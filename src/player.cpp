@@ -59,7 +59,7 @@ Player::~Player()
 
 void Player::LoadSpriteTexture(SDL_Renderer *spriteRenderer)
 {
-	spriteSheet = LoadTexture("sprite.png", spriteRenderer);
+	spriteSheet = LoadTexture(SDL_GetBasePath() + SPRITE_SHEET_FILENAME, spriteRenderer);
 }
 
 void Player::AttemptJump()
