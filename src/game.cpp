@@ -48,6 +48,9 @@ void Game::Execute(SDL_Renderer *SDLRenderer)
 	try {
 		mainPlayer.LoadSpriteTexture(SDLRenderer);
 
+		static Player shadowPlayer;
+		shadowPlayer.LoadSpriteTexture(SDLRenderer);
+
 		//SDL_Texture *spriteSheet = LoadTexture("sprite.bmp", SDLRenderer);
 
 		clock = SDL_GetTicks();
@@ -75,6 +78,9 @@ void Game::Execute(SDL_Renderer *SDLRenderer)
 			keyHandler.GiveInstructions(&mainPlayer);
 			mainPlayer.UpdateLocRect();
 
+			keyHandler.GiveInstructions(&shadowPlayer);
+			shadowPlayer.UpdateLocRect();
+
 			//if (renderDelay >= (FRAME_TIME))
 			//{
 			//	// render HERE
@@ -89,6 +95,8 @@ void Game::Execute(SDL_Renderer *SDLRenderer)
 			SDL_RenderClear(SDLRenderer);
 			SDL_RenderCopy(SDLRenderer, mainPlayer.GetSpriteSheet(),
 				&(mainPlayer.GetStateRect()), &(mainPlayer.GetLocRect()));
+			SDL_RenderCopy(SDLRenderer, shadowPlayer.GetSpriteSheet(),
+				&(shadowPlayer.GetQueueStateRect()), &(shadowPlayer.GetQueueLocRect()));
 			SDL_RenderPresent(SDLRenderer);
 			renderDelay -= (FRAME_TIME);
 
