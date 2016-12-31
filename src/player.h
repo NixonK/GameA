@@ -41,6 +41,10 @@ protected:
 	SDL_Rect spriteStateRect;
 	SDL_Rect spriteLocRect;
 
+	const int QUEUE_SIZE = 10;
+	std::queue<SDL_Rect> locationQueue;
+	std::queue<SDL_Rect> stateQueue;
+
 	// More precise location x and y values for precision movement calculations.
 	double locX;
 	double locY;
@@ -134,9 +138,19 @@ public:
 	SDL_Rect GetStateRect();
 
 	/**
+	* Return the crop coordinates of the sprite sheet.
+	*/
+	SDL_Rect GetQueueStateRect();
+
+	/**
 	 * Return the location coordinates of the sprite.
 	 */
 	SDL_Rect GetLocRect();
+
+	/**
+	* Return the location coordinates of the sprite at the front of the queue.
+	*/
+	SDL_Rect GetQueueLocRect();
 
 	/**
 	 * Return the sprite sheet texture. 

@@ -155,6 +155,10 @@ void Player::UpdateStateRect()
 		spriteStateRect.y = 0;
 	else 
 		spriteStateRect.y = SPRITE_HEIGHT;
+	if (stateQueue.size() == QUEUE_SIZE) {
+		stateQueue.pop();
+	}
+	stateQueue.push(spriteStateRect);
 }
 
 void Player::UpdateLocRect()
@@ -194,6 +198,10 @@ void Player::UpdateLocVariables()
 {
 	spriteLocRect.x = static_cast<int>(locX + 0.5);
 	spriteLocRect.y = static_cast<int>(locY + 0.5);
+	if (locationQueue.size() == QUEUE_SIZE) {
+		locationQueue.pop();
+	}
+	locationQueue.push(spriteLocRect);
 }
 
 bool Player::IsOffGround()
@@ -206,9 +214,19 @@ SDL_Rect Player::GetStateRect()
 	return spriteStateRect;
 }
 
+SDL_Rect Player::GetQueueStateRect()
+{
+	return stateQueue.front();
+}
+
 SDL_Rect Player::GetLocRect()
 {
 	return spriteLocRect;
+}
+
+SDL_Rect Player::GetQueueLocRect()
+{
+	return locationQueue.front();
 }
 
 SDL_Texture *Player::GetSpriteSheet()

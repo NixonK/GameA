@@ -15,5 +15,6 @@
 #include<SDL_image.h>
 #include<iostream>
 #include<string.h>
+#include<queue>
 
 #endif
