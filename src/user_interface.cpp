@@ -62,13 +62,12 @@ SDL_Texture *UserInterface::LoadTexture(std::string filePath, SDL_Renderer * ren
 {
 	SDL_Texture *texture = nullptr;
 	SDL_Surface *surface = IMG_Load(filePath.c_str());
-	if (!surface)
-		std::cout << "Error IMG_Load: " << filePath.c_str() << std::endl;
-	else
-	{
+	if (!surface) {
+		throw std::runtime_error("Could not load texture with file at \"" + filePath + "\"");
+	} else {
 		texture = SDL_CreateTextureFromSurface(renderTarget, surface);
 		if (!texture)
-			std::cout << "Error texture not created." << filePath.c_str() << std::endl;
+			throw std::runtime_error("Could not load texture with file: " + filePath);
 	}
 	SDL_FreeSurface(surface);
 

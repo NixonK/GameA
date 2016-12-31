@@ -45,56 +45,60 @@ void Game::Execute(SDL_Renderer *SDLRenderer)
 	// This will show the new, red contents of the window.
 	SDL_RenderPresent(SDLRenderer);
 
+	try {
+		mainPlayer.LoadSpriteTexture(SDLRenderer);
 
-	mainPlayer.LoadSpriteTexture(SDLRenderer);
+		//SDL_Texture *spriteSheet = LoadTexture("sprite.bmp", SDLRenderer);
 
-	//SDL_Texture *spriteSheet = LoadTexture("sprite.bmp", SDLRenderer);
-
-	clock = SDL_GetTicks();
-	while (isRunning)	// while window is running
-	{
-		deltaTime = SDL_GetTicks() - clock;
 		clock = SDL_GetTicks();
-
-		while (SDL_PollEvent(&event) != 0)
+		while (isRunning)	// while window is running
 		{
-			if (event.type == SDL_QUIT)
+			deltaTime = SDL_GetTicks() - clock;
+			clock = SDL_GetTicks();
+
+			while (SDL_PollEvent(&event) != 0)
 			{
-				isRunning = false;
-				break;
-			}
-			if ((event.type == SDL_KEYDOWN) || (event.type = SDL_KEYUP)) {
-				if (event.key.keysym.sym == SDLK_a ||		// a for left movement
-					event.key.keysym.sym == SDLK_d ||		// d for right movement
-					event.key.keysym.sym == SDLK_SPACE)		// space for jump, vertical movement
+				if (event.type == SDL_QUIT)
 				{
-					keyHandler.LogEvent(event);
+					isRunning = false;
+					break;
+				}
+				if ((event.type == SDL_KEYDOWN) || (event.type = SDL_KEYUP)) {
+					if (event.key.keysym.sym == SDLK_a ||		// a for left movement
+						event.key.keysym.sym == SDLK_d ||		// d for right movement
+						event.key.keysym.sym == SDLK_SPACE)		// space for jump, vertical movement
+					{
+						keyHandler.LogEvent(event);
+					}
 				}
 			}
+			keyHandler.GiveInstructions(&mainPlayer);
+			mainPlayer.UpdateLocRect();
+
+			//if (renderDelay >= (FRAME_TIME))
+			//{
+			//	// render HERE
+			//	SDL_RenderClear(SDLRenderer);
+			//	SDL_RenderCopy(SDLRenderer, mainPlayer.GetSpriteSheet(),
+			//		&(mainPlayer.GetStateRect()), &(mainPlayer.GetLocRect()));
+			//	SDL_RenderPresent(SDLRenderer);
+			//	renderDelay -= (FRAME_TIME);
+			//}
+
+			// render HERE
+			SDL_RenderClear(SDLRenderer);
+			SDL_RenderCopy(SDLRenderer, mainPlayer.GetSpriteSheet(),
+				&(mainPlayer.GetStateRect()), &(mainPlayer.GetLocRect()));
+			SDL_RenderPresent(SDLRenderer);
+			renderDelay -= (FRAME_TIME);
+
+
+			renderDelay += deltaTime;
+			if (deltaTime < FRAME_TIME)
+				SDL_Delay(FRAME_TIME - deltaTime);
 		}
-		keyHandler.GiveInstructions(&mainPlayer);
-		mainPlayer.UpdateLocRect();
-
-		//if (renderDelay >= (FRAME_TIME))
-		//{
-		//	// render HERE
-		//	SDL_RenderClear(SDLRenderer);
-		//	SDL_RenderCopy(SDLRenderer, mainPlayer.GetSpriteSheet(),
-		//		&(mainPlayer.GetStateRect()), &(mainPlayer.GetLocRect()));
-		//	SDL_RenderPresent(SDLRenderer);
-		//	renderDelay -= (FRAME_TIME);
-		//}
-
-		// render HERE
-		SDL_RenderClear(SDLRenderer);
-		SDL_RenderCopy(SDLRenderer, mainPlayer.GetSpriteSheet(),
-			&(mainPlayer.GetStateRect()), &(mainPlayer.GetLocRect()));
-		SDL_RenderPresent(SDLRenderer);
-		renderDelay -= (FRAME_TIME);
-
-
-		renderDelay += deltaTime;
-		if (deltaTime < FRAME_TIME)
-			SDL_Delay(FRAME_TIME - deltaTime);
+	}
+	catch (std::exception& e) {
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", e.what(), NULL);
 	}
 }
