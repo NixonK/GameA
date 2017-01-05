@@ -13,21 +13,16 @@
 
 int main(int argc, char * argv[])
 {
-	UserInterface *mainUI = new UserInterface();
-	if (!((*mainUI).Init()))
+	UserInterface mainUI;
+	if (!(mainUI.Init()))
 		return -1;
 
-	Game *mainGame = new Game();
+	Game mainGame;
 
-	(*mainGame).Execute((*mainUI).GetRenderer());
+	mainGame.Execute(mainUI.GetRenderer());
 
 	//(*(*mainGame).GetPlayer()).CleanUp(); // player gets deleted on exit
 
-
-	delete mainUI;
-	mainUI = nullptr;
-	delete mainGame;
-	mainGame = nullptr;
 
 	return 0;
 }
