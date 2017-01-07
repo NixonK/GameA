@@ -12,12 +12,11 @@
 #ifndef GAME_H_INCLUDED
 #define GAME_H_INCLUDED
 
-#include"user_interface.h"
-#include"key_handler.h"
-#include"player.h"
+#include "user_interface.h"
+#include "key_handler.h"
+#include "player.h"
 
-class Game : public UserInterface
-{
+class Game : public UserInterface {
 protected:
 	// The status if the game is running.
 	bool isRunning;

@@ -11,10 +11,9 @@
 #define INCLUDES_H_INCLUDED
 
 // Shared includes file
-#include<SDL.h>
-#include<SDL_image.h>
-#include<iostream>
-#include<string.h>
-#include<queue>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <iostream>
+#include <string.h>
 
 #endif

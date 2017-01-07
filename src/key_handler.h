@@ -11,14 +11,12 @@
 #ifndef KEY_HANDLER_H_INCLUDED
 #define KEY_HANDLER_H_INCLUDED
 
-#include"includes.h"
-#include"player.h"
-#include"movement.h"
-#include<map>
+#include "includes.h"
+#include "player.h"
+#include "movement.h"
+#include <map>
 
-
-class KeyHandler
-{
+class KeyHandler {
 private:
 	// Map with keyboard button code as the key and
 	// Unit8 state of the key (SDL_PRESSED or SDL_RELEASED).
@@ -57,7 +55,7 @@ public:
 	bool IsReleased(SDL_Keycode keyCode);
 
 	/**
- 	 * Pass on instructions in keyState.
+ 	 * Return keyState instructions as a bitflags.
 	 */
 	uMovementType GetInstructions();
 };
