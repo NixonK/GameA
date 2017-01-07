@@ -2,8 +2,8 @@
 // Author:			Nixon Kwok
 // Contributors:	a
 //
-// Description:	Game class that runs at the constrained FPS variable speed to 
-//				call the KeyHandler class and update Player movement. Finally, 
+// Description:	Game class that runs at the constrained FPS variable speed to
+//				call the KeyHandler class and update Player movement. Finally,
 //				renders all updates at each frame tick.
 //
 // Notes:

@@ -2,8 +2,8 @@
 // Author:			Nixon Kwok
 // Contributors:	a
 //
-// Description:	Game class that runs at the constrained FPS variable speed to 
-//				call the KeyHandler class and update Player movement. Finally, 
+// Description:	Game class that runs at the constrained FPS variable speed to
+//				call the KeyHandler class and update Player movement. Finally,
 //				renders all updates at each frame tick.
 //
 // Notes:
@@ -27,7 +27,7 @@ Game::Game()
 Game::~Game()
 {
 	// Player object loaded with automatic storage duration; will be deleted when out of scope.
-	// Player is loaded with automatic storage, no need to manually delete. 
+	// Player is loaded with automatic storage, no need to manually delete.
 }
 
 Player *Game::GetPlayer()

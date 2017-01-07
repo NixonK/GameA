@@ -153,7 +153,7 @@ void Player::UpdateStateRect()
 	spriteStateRect.x = (spriteState % 3) * SPRITE_WIDTH;
 	if (spriteState <= 2)
 		spriteStateRect.y = 0;
-	else 
+	else
 		spriteStateRect.y = SPRITE_HEIGHT;
 	if (stateQueue.size() == QUEUE_SIZE) {
 		stateQueue.pop();
@@ -173,7 +173,7 @@ void Player::UpdateLocRect()
 	{
 		locY = screenFloor;
 		vertVel = 0.0;
-		
+
 		numberJumps++;
 	}
 
@@ -190,7 +190,7 @@ void Player::UpdateLocRect()
 	std::cout << "x: " << locX << " y: " << locY <<
 		" state: " << spriteState <<
 		" vertVel: " << vertVel <<
-		" IsOffGround: " << IsOffGround() << 
+		" IsOffGround: " << IsOffGround() <<
 		" jumpDelayCounter: " << jumpDelayCounter << std::endl;
 	//std::cout << static_cast<int>(Movement::JUMP) << std::endl;
 }

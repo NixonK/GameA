@@ -42,7 +42,7 @@ uMovementType KeyHandler::GetInstructions()
 	{
 		moveState |= Movement::JUMP;
 	}
-		
+
 
 	if (IsPressed(SDLK_a) && IsPressed(SDLK_d))		// both a and d pressed
 		moveState |= Movement::STOP;
