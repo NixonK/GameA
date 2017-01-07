@@ -7,11 +7,10 @@
 // Notes:
 //
 
-#include"user_interface.h"
-#include"game.h"
+#include "user_interface.h"
+#include "game.h"
 
-UserInterface::UserInterface()
-{
+UserInterface::UserInterface() {
 	window = nullptr;
 	//const int INIT_SCREEN_WIDTH;
 	//const int INIT_SCREEN_HEIGHT;
@@ -22,8 +21,7 @@ UserInterface::UserInterface()
 	imgFlags = NULL;
 }
 
-UserInterface::~UserInterface()
-{
+UserInterface::~UserInterface() {
 	SDL_DestroyWindow(window);
 	window = nullptr;
 
@@ -33,8 +31,7 @@ UserInterface::~UserInterface()
 	SDL_Quit();
 }
 
-bool UserInterface::Init()
-{
+bool UserInterface::Init() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		return false;
 
@@ -51,15 +48,13 @@ bool UserInterface::Init()
 		SDL_WINDOW_RESIZABLE)) == NULL)
 		return false;
 
-	if ((renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED))
-		== NULL)
+	if ((renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)) == NULL)
 		return false;
 
 	return true;
 }
 
-SDL_Texture *UserInterface::LoadTexture(std::string filePath, SDL_Renderer * renderTarget)
-{
+SDL_Texture *UserInterface::LoadTexture(std::string filePath, SDL_Renderer * renderTarget) {
 	SDL_Texture *texture = nullptr;
 	SDL_Surface *surface = IMG_Load(filePath.c_str());
 	if (!surface) {
@@ -74,8 +69,7 @@ SDL_Texture *UserInterface::LoadTexture(std::string filePath, SDL_Renderer * ren
 	return texture;
 }
 
-SDL_Renderer *UserInterface::GetRenderer()
-{
+SDL_Renderer *UserInterface::GetRenderer() {
 	return renderer;
 }
 

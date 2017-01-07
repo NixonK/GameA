@@ -2,7 +2,7 @@
 // Author:			Nixon Kwok
 // Contributors:	a
 //
-// Description:	User interface file with window, renderer, and FPS specifications
+// Description:	User interface file with window, renderer, and FPS specifications.
 //
 // Notes:
 //
@@ -10,10 +10,9 @@
 #ifndef USER_INTERFACE_H_INCLUDED
 #define USER_INTERFACE_H_INCLUDED
 
-#include"includes.h"
+#include "includes.h"
 
-class UserInterface
-{
+class UserInterface {
 protected:
 	// Window to render textures on.
 	SDL_Window *window;

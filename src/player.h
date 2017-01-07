@@ -12,11 +12,11 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 
-#include"user_interface.h"
-#include"movement.h"
+#include "user_interface.h"
+#include "movement.h"
+#include <queue>
 
-class Player : public UserInterface
-{
+class Player : public UserInterface {
 protected:
 	// Pointer to sprite sheet texture.
 	SDL_Texture *spriteSheet;
@@ -25,8 +25,8 @@ protected:
 	const std::string SPRITE_SHEET_FILENAME = "sprite.png";
 
 	// Original sprite sheet width and height.
-	const int SPRITE_SHEET_WIDTH = 24;
-	const int SPRITE_SHEET_HEIGHT = 28;
+	static const int SPRITE_SHEET_WIDTH = 24;
+	static const int SPRITE_SHEET_HEIGHT = 28;
 
 	// Sprite width and height based on sprite sheet sizes.
 	int SPRITE_WIDTH, SPRITE_HEIGHT;
@@ -37,12 +37,12 @@ protected:
 	// 1-6 sprite states of the sprite sheet.
 	int spriteState;
 
-	// Sprite sheet location on the screen and location of the current sprite. 
+	// Sprite sheet location on the screen and location of the current sprite.
 	// on the sprite sheet.
 	SDL_Rect spriteStateRect;
 	SDL_Rect spriteLocRect;
 
-	const int QUEUE_SIZE = 10;
+	static const int QUEUE_SIZE = 10;
 	std::queue<SDL_Rect> locationQueue;
 	std::queue<SDL_Rect> stateQueue;
 
@@ -50,12 +50,12 @@ protected:
 	double locX;
 	double locY;
 
-	// Precision calculation for movement.  
+	// Precision calculation for movement.
 	double distanceToMove;
 
 	// Floor of the screen, based on screen height.
 	int screenFloor;
-	
+
 	// Number of possible jumps left for the player
 	int numberJumps = 1;
 
@@ -72,7 +72,7 @@ protected:
 	const double lungeDistance = 5;
 
 	// Horizontal jump movement, and jump strength that is affected by gravity.
-	const double jumpDistance = 4.5;	
+	const double jumpDistance = 4.5;
 	const double jumpStrength = 5;
 	const double gravity = -.1;
 
@@ -115,14 +115,14 @@ public:
 	 * Update the sprite sheet rect to crop to the correct current state.
 	 */
 	void UpdateStateRect();
-	
+
 	/**
-	 * Update the location of the player on the screen based on current velocity. 
+	 * Update the location of the player on the screen based on current velocity.
 	 */
 	void UpdateLocRect();
-	
+
 	/**
-	 * Translate the precise x and y variables into usable int. 
+	 * Translate the precise x and y variables into usable int.
 	 */
 	void UpdateLocVariables();
 
@@ -159,9 +159,9 @@ public:
 	SDL_Rect GetQueueLocRect();
 
 	/**
-	 * Return the sprite sheet texture. 
+	 * Return the sprite sheet texture.
 	 */
 	SDL_Texture *GetSpriteSheet();
 };
 
-#endif 
+#endif

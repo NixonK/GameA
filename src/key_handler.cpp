@@ -10,48 +10,45 @@
 
 #include "key_handler.h"
 
-KeyHandler::KeyHandler()
-{
+KeyHandler::KeyHandler() {
 	keyState = {};
 }
 
-KeyHandler::~KeyHandler()
-{
+KeyHandler::~KeyHandler() {
 
 }
 
-void KeyHandler::LogEvent(SDL_Event event)
-{
+void KeyHandler::LogEvent(SDL_Event event) {
 	keyState[event.key.keysym.sym] = event.key.state;
 }
 
-bool KeyHandler::IsPressed(SDL_Keycode keyCode)
-{
+bool KeyHandler::IsPressed(SDL_Keycode keyCode) {
 	return (keyState[keyCode] == SDL_PRESSED);
 }
 
-bool KeyHandler::IsReleased(SDL_Keycode keyCode)
-{
+bool KeyHandler::IsReleased(SDL_Keycode keyCode) {
 	return (keyState[keyCode] == SDL_RELEASED);
 }
 
-uMovementType KeyHandler::GetInstructions()
-{
+uMovementType KeyHandler::GetInstructions() {
 	uMovementType moveState = static_cast<uMovementType>(Movement::BLANK);
-	if (IsPressed(SDLK_SPACE))
-	{
+	if (IsPressed(SDLK_SPACE)) {
 		moveState |= Movement::JUMP;
 	}
-		
 
-	if (IsPressed(SDLK_a) && IsPressed(SDLK_d))		// both a and d pressed
+	if (IsPressed(SDLK_a) && IsPressed(SDLK_d)) {
+		// both 'a' and 'd' pressed
 		moveState |= Movement::STOP;
-	else if (IsPressed(SDLK_a))						// only a (left) pressed
+	} else if (IsPressed(SDLK_a)) {
+		// only 'a' (left) pressed
 		moveState |= Movement::LEFT;
-	else if (IsPressed(SDLK_d))						// only d (right) pressed
+	} else if (IsPressed(SDLK_d)) {
+		// only 'd' (right) pressed
 		moveState |= Movement::RIGHT;
-	else if (IsReleased(SDLK_a) && IsReleased(SDLK_d))	// both released
+	} else if (IsReleased(SDLK_a) && IsReleased(SDLK_d)) {
+		// both released
 		moveState |= Movement::STOP;
+	}
 
 	return moveState;
 }
