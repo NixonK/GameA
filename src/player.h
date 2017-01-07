@@ -25,8 +25,8 @@ protected:
 	const std::string SPRITE_SHEET_FILENAME = "sprite.png";
 
 	// Original sprite sheet width and height.
-	const int SPRITE_SHEET_WIDTH = 24;
-	const int SPRITE_SHEET_HEIGHT = 28;
+	static const int SPRITE_SHEET_WIDTH = 24;
+	static const int SPRITE_SHEET_HEIGHT = 28;
 
 	// Sprite width and height based on sprite sheet sizes.
 	int SPRITE_WIDTH, SPRITE_HEIGHT;
@@ -42,7 +42,7 @@ protected:
 	SDL_Rect spriteStateRect;
 	SDL_Rect spriteLocRect;
 
-	const int QUEUE_SIZE = 10;
+	static const int QUEUE_SIZE = 10;
 	std::queue<SDL_Rect> locationQueue;
 	std::queue<SDL_Rect> stateQueue;
 
