@@ -13,6 +13,7 @@
 
 #include"includes.h"
 #include"player.h"
+#include"movement.h"
 #include<map>
 
 
@@ -56,11 +57,9 @@ public:
 	bool IsReleased(SDL_Keycode keyCode);
 
 	/**
- 	 * Pass on instructions in keyState map to player.
-	 *
-	 * @param player the player object in this game.
+ 	 * Pass on instructions in keyState.
 	 */
-	void GiveInstructions(Player *player);
+	uMovementType GetInstructions();
 };
 
 #endif

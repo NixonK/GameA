@@ -13,6 +13,7 @@
 #define PLAYER_H_INCLUDED
 
 #include"user_interface.h"
+#include"movement.h"
 
 class Player : public UserInterface
 {
@@ -129,6 +130,11 @@ public:
 	 * Return true if player is off the ground, false otherwise.
 	 */
 	bool IsOffGround();
+
+	/**
+	* Give instructions to this player depending on moveFlags and update location rect.
+	*/
+	void GiveInstruction(uMovementType moveFlags);
 
 
 
