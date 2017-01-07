@@ -192,6 +192,7 @@ void Player::UpdateLocRect()
 		" vertVel: " << vertVel <<
 		" IsOffGround: " << IsOffGround() << 
 		" jumpDelayCounter: " << jumpDelayCounter << std::endl;
+	//std::cout << static_cast<int>(Movement::JUMP) << std::endl;
 }
 
 void Player::UpdateLocVariables()
@@ -207,6 +208,23 @@ void Player::UpdateLocVariables()
 bool Player::IsOffGround()
 {
 	return locY < screenFloor;
+}
+
+void Player::GiveInstruction(uMovementType moveFlags)
+{
+	if (moveFlags & Movement::JUMP) {
+		this->AttemptJump();
+	}
+
+	if (moveFlags & Movement::STOP) {
+		this->StopSprite();
+	} else if (moveFlags & Movement::LEFT) {
+		this->MoveSprite('L');
+	} else if (moveFlags & Movement::RIGHT) {
+		this->MoveSprite('R');
+	}
+
+	this->UpdateLocRect();
 }
 
 SDL_Rect Player::GetStateRect()

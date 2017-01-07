@@ -75,11 +75,9 @@ void Game::Execute(SDL_Renderer *SDLRenderer)
 					}
 				}
 			}
-			keyHandler.GiveInstructions(&mainPlayer);
-			mainPlayer.UpdateLocRect();
+			mainPlayer.GiveInstruction(keyHandler.GetInstructions());
 
-			keyHandler.GiveInstructions(&shadowPlayer);
-			shadowPlayer.UpdateLocRect();
+			shadowPlayer.GiveInstruction(keyHandler.GetInstructions());
 
 			//if (renderDelay >= (FRAME_TIME))
 			//{

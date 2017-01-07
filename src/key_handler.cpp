@@ -35,21 +35,23 @@ bool KeyHandler::IsReleased(SDL_Keycode keyCode)
 	return (keyState[keyCode] == SDL_RELEASED);
 }
 
-void KeyHandler::GiveInstructions(Player *player)
+uMovementType KeyHandler::GetInstructions()
 {
+	uMovementType moveState = static_cast<uMovementType>(Movement::BLANK);
 	if (IsPressed(SDLK_SPACE))
 	{
-		(*player).AttemptJump();
-		//std::cout << "space pressed" << std::endl;
+		moveState |= Movement::JUMP;
 	}
 		
 
 	if (IsPressed(SDLK_a) && IsPressed(SDLK_d))		// both a and d pressed
-		(*player).StopSprite();		
+		moveState |= Movement::STOP;
 	else if (IsPressed(SDLK_a))						// only a (left) pressed
-		(*player).MoveSprite('L');
+		moveState |= Movement::LEFT;
 	else if (IsPressed(SDLK_d))						// only d (right) pressed
-		(*player).MoveSprite('R');
+		moveState |= Movement::RIGHT;
 	else if (IsReleased(SDLK_a) && IsReleased(SDLK_d))	// both released
-		(*player).StopSprite();
+		moveState |= Movement::STOP;
+
+	return moveState;
 }
