@@ -11,15 +11,17 @@ endif()
 
 
 # Glob source files.
-file( GLOB_RECURSE GAMEA_SRC
+set( GAMEA_SRC_DIR "./src" )
+file( GLOB_RECURSE GAMEA_SRC_FILES
 	RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
-	"src/*.cpp"
+	"${GAMEA_SRC_DIR}/*.cpp"
 )
-file( GLOB_RECURSE GAMEA_HEADERS
+set( GAMEA_INCLUDE_DIR "./GameA" )
+file( GLOB_RECURSE GAMEA_INCLUDE_FILES
 	RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} 
-	"src/*.h"
+	"${GAMEA_INCLUDE_DIR}/*.h"
 )
-set( SOURCE_FILES ${GAMEA_SRC} ${GAMEA_HEADERS} )
+set( SOURCE_FILES ${GAMEA_SRC_FILES} ${GAMEA_INCLUDE_FILES} )
 
 
 # Create executable target.
@@ -46,7 +48,7 @@ find_package( SDL2 REQUIRED )
 find_package( SDL2image REQUIRED )
 target_link_libraries( GameA ${SDL2_LIBRARIES} ${SDL2image_LIBRARIES} )
 target_include_directories( GameA PUBLIC
-	./src/
+	${GAMEA_INCLUDE_DIR}
 	${SDL2_INCLUDE_DIRS}
 	${SDL2image_INCLUDE_DIRS}
 )
