@@ -12,9 +12,6 @@
 #include "player.h"
 
 Player::Player() {
-	SPRITE_WIDTH = SPRITE_SHEET_WIDTH / 3;
-	SPRITE_HEIGHT = SPRITE_SHEET_HEIGHT / 2;
-	SPRITE_GROW = 4;
 	spriteState = 0;
 
 	spriteStateRect;

@@ -29,19 +29,20 @@ protected:
 	static const int SPRITE_SHEET_HEIGHT = 28;
 
 	// Sprite width and height based on sprite sheet sizes.
-	int SPRITE_WIDTH, SPRITE_HEIGHT;
+	static const int SPRITE_WIDTH = SPRITE_SHEET_WIDTH / 3;
+	static const int SPRITE_HEIGHT = SPRITE_SHEET_HEIGHT / 2;
 
 	// Sprite enlargement (because original sheet is very small).
-	int SPRITE_GROW;
+	static const int SPRITE_GROW = 4;
 
 	// 1-6 sprite states of the sprite sheet.
 	int spriteState;
 
-	// Sprite sheet location on the screen and location of the current sprite.
-	// on the sprite sheet.
+	// Sprite sheet location on the screen and location of the current sprite on the sprite sheet.
 	SDL_Rect spriteStateRect;
 	SDL_Rect spriteLocRect;
 
+	// Queue containing location and state rectangles.
 	static const int QUEUE_SIZE = 10;
 	std::queue<SDL_Rect> locationQueue;
 	std::queue<SDL_Rect> stateQueue;
