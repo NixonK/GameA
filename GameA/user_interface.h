@@ -21,7 +21,7 @@ private:
 	SDL_Renderer *renderer;
 
 public:
-	static const struct ScreenProperties {
+	const struct ScreenProperties {
 		// Initial window width and height.
 		static const int INIT_SCREEN_WIDTH = 800;
 		static const int INIT_SCREEN_HEIGHT = 400;
