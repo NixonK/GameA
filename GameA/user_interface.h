@@ -13,25 +13,20 @@
 #include "includes.h"
 
 class UserInterface {
-protected:
+private:
 	// Window to render textures on.
 	SDL_Window *window;
-
-	// Initial window width and height.
-	const int INIT_SCREEN_WIDTH = 800;
-	const int INIT_SCREEN_HEIGHT = 400;
-
-	// Window width and height.
-	int screenWidth, screenHeight;
-
-	// FPS used for the game.
-	const float FPS = 60;
 
 	// Renderer for the game.
 	SDL_Renderer *renderer;
 
-	// Flag used for checking image initialisation errors.
-	int imgFlags;
+protected:
+	// Initial window width and height.
+	const int INIT_SCREEN_WIDTH = 800;
+	const int INIT_SCREEN_HEIGHT = 400;
+
+	// FPS used for the game.
+	static const int FPS = 60;
 
 public:
 	/**
@@ -58,12 +53,15 @@ public:
 	 */
 	SDL_Texture *LoadTexture(std::string filePath, SDL_Renderer *renderTarget);
 
-
-
 	/**
 	* Returns pointer to game renderer.
 	*/
 	SDL_Renderer *GetRenderer();
+
+	/**
+	* Returns FPS sepcified.
+	*/
+	int GetFPS();
 };
 
 #endif

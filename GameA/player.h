@@ -60,11 +60,6 @@ protected:
 	// Number of possible jumps left for the player
 	int numberJumps = 1;
 
-	// Jump delay mechanism for number of frames, currently for testing.
-	const int jumpDelay = (int)FPS;
-	int jumpDelayCounter;
-	bool jumpDelayed;
-
 	// Vertical velocity of the player.
 	double vertVel;
 

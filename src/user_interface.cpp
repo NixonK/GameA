@@ -12,13 +12,7 @@
 
 UserInterface::UserInterface() {
 	window = nullptr;
-	//const int INIT_SCREEN_WIDTH;
-	//const int INIT_SCREEN_HEIGHT;
-	screenWidth = NULL;
-	screenHeight = NULL;
-	//const float FPS;
 	renderer = nullptr;
-	imgFlags = NULL;
 }
 
 UserInterface::~UserInterface() {
@@ -35,9 +29,8 @@ bool UserInterface::Init() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		return false;
 
-	imgFlags = IMG_INIT_PNG;
-	if (IMG_Init(imgFlags) != imgFlags)
-		std::cout << "Erro: " << IMG_GetError() << std::endl;
+	if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG)
+		std::cout << "Error with initializing PNG support: " << IMG_GetError() << std::endl;
 
 	if ((window = SDL_CreateWindow(
 		"GameA TEST",				// window title
@@ -71,5 +64,10 @@ SDL_Texture *UserInterface::LoadTexture(std::string filePath, SDL_Renderer * ren
 
 SDL_Renderer *UserInterface::GetRenderer() {
 	return renderer;
+}
+
+int UserInterface::GetFPS()
+{
+	return FPS;
 }
 

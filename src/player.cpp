@@ -30,16 +30,7 @@ Player::Player() {
 
 	screenFloor = spriteLocRect.y;
 
-	// const int numberJumps;
-	//const int jumpDelay;
-	jumpDelayCounter = jumpDelay;
-	jumpDelayed = false;
 	vertVel = 0.0;
-	//const double leanDistance;
-	//const double lungeDistance;
-	//const double jumpDistance;
-	//const double jumpStrength;
-	//const double gravity;
 }
 
 Player::~Player() {
@@ -55,9 +46,8 @@ void Player::LoadSpriteTexture(SDL_Renderer *spriteRenderer) {
 }
 
 void Player::AttemptJump() {
-	if (numberJumps > 0 && !jumpDelayed) {
+	if (numberJumps > 0) {
 		numberJumps--;
-		jumpDelayed = true;
 		vertVel = jumpStrength;
 	}
 }
@@ -161,19 +151,11 @@ void Player::UpdateLocRect() {
 		numberJumps++;
 	}
 
-	if (jumpDelayed) {
-		jumpDelayCounter--;
-		if (jumpDelayCounter == 0) {
-			jumpDelayCounter = jumpDelay;
-			jumpDelayed = false;
-		}
-	}
 	UpdateLocVariables();
 	std::cout << "x: " << locX << " y: " << locY <<
 		" state: " << spriteState <<
 		" vertVel: " << vertVel <<
-		" IsOffGround: " << IsOffGround() <<
-		" jumpDelayCounter: " << jumpDelayCounter << std::endl;
+		" IsOffGround: " << IsOffGround() << std::endl;
 	//std::cout << static_cast<int>(Movement::JUMP) << std::endl;
 }
 
