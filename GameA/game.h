@@ -16,7 +16,7 @@
 #include "key_handler.h"
 #include "player.h"
 
-class Game : public UserInterface {
+class Game {
 protected:
 	// The status if the game is running.
 	bool isRunning;
@@ -46,7 +46,7 @@ public:
 	/**
 	 * Game class constructor, initialise frame control variables and isRunning.
 	 */
-	Game();
+	Game(float fps);
 
 	/**
 	 * Game class destructor.

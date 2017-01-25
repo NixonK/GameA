@@ -12,11 +12,10 @@
 #ifndef PLAYER_H_INCLUDED
 #define PLAYER_H_INCLUDED
 
-#include "user_interface.h"
 #include "movement.h"
 #include <queue>
 
-class Player : public UserInterface {
+class Player {
 protected:
 	// Pointer to sprite sheet texture.
 	SDL_Texture *spriteSheet;

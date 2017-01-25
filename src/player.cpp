@@ -10,6 +10,7 @@
 //
 
 #include "player.h"
+#include "user_interface.h"
 
 Player::Player() {
 	spriteState = 0;
@@ -21,7 +22,7 @@ Player::Player() {
 
 	spriteLocRect;
 	locX = 0;
-	locY = (double) (INIT_SCREEN_HEIGHT - (SPRITE_HEIGHT * SPRITE_GROW));
+	locY = (double) (UserInterface::ScreenProperties::INIT_SCREEN_HEIGHT - (SPRITE_HEIGHT * SPRITE_GROW));
 	UpdateLocVariables();
 	spriteLocRect.w = SPRITE_WIDTH * SPRITE_GROW;
 	spriteLocRect.h = SPRITE_HEIGHT * SPRITE_GROW;
@@ -42,7 +43,7 @@ Player::~Player() {
 }
 
 void Player::LoadSpriteTexture(SDL_Renderer *spriteRenderer) {
-	spriteSheet = LoadTexture(SDL_GetBasePath() + SPRITE_SHEET_FILENAME, spriteRenderer);
+	spriteSheet = UserInterface::LoadTexture(SDL_GetBasePath() + SPRITE_SHEET_FILENAME, spriteRenderer);
 }
 
 void Player::AttemptJump() {

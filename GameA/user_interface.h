@@ -20,15 +20,16 @@ private:
 	// Renderer for the game.
 	SDL_Renderer *renderer;
 
-protected:
-	// Initial window width and height.
-	const int INIT_SCREEN_WIDTH = 800;
-	const int INIT_SCREEN_HEIGHT = 400;
-
-	// FPS used for the game.
-	static const int FPS = 60;
-
 public:
+	static const struct ScreenProperties {
+		// Initial window width and height.
+		static const int INIT_SCREEN_WIDTH = 800;
+		static const int INIT_SCREEN_HEIGHT = 400;
+
+		// FPS used for the game.
+		static const int FPS = 60;
+	};
+
 	/**
 	 * Constructor that sets rendering components to NULL.
 	 */
@@ -51,17 +52,12 @@ public:
 	 * @param filePath file path of image to load as texture.
 	 * @param renderTarget target of renderer used for the game.
 	 */
-	SDL_Texture *LoadTexture(std::string filePath, SDL_Renderer *renderTarget);
+	static SDL_Texture *LoadTexture(std::string filePath, SDL_Renderer *renderTarget);
 
 	/**
 	* Returns pointer to game renderer.
 	*/
 	SDL_Renderer *GetRenderer();
-
-	/**
-	* Returns FPS sepcified.
-	*/
-	int GetFPS();
 };
 
 #endif

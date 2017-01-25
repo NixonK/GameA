@@ -36,8 +36,8 @@ bool UserInterface::Init() {
 		"GameA TEST",				// window title
 		SDL_WINDOWPOS_CENTERED,		// initial x position
 		SDL_WINDOWPOS_CENTERED,		// initial y position
-		INIT_SCREEN_WIDTH,			// width, in pixels
-		INIT_SCREEN_HEIGHT,			// height, in pixels
+		ScreenProperties::INIT_SCREEN_WIDTH,			// width, in pixels
+		ScreenProperties::INIT_SCREEN_HEIGHT,		// height, in pixels
 		SDL_WINDOW_RESIZABLE)) == NULL)
 		return false;
 
@@ -64,10 +64,5 @@ SDL_Texture *UserInterface::LoadTexture(std::string filePath, SDL_Renderer * ren
 
 SDL_Renderer *UserInterface::GetRenderer() {
 	return renderer;
-}
-
-int UserInterface::GetFPS()
-{
-	return FPS;
 }
 
