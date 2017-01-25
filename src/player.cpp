@@ -195,12 +195,14 @@ void Player::GiveInstruction(uMovementType moveFlags) {
 		this->AttemptJump();
 	}
 
-	if (moveFlags & Movement::STOP) {
+	if (moveFlags & Movement::LEFT && moveFlags & Movement::RIGHT) {
 		this->StopSprite();
 	} else if (moveFlags & Movement::LEFT) {
 		this->MoveSprite('L');
 	} else if (moveFlags & Movement::RIGHT) {
 		this->MoveSprite('R');
+	} else {
+		this->StopSprite();
 	}
 
 	this->UpdateLocRect();
