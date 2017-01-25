@@ -11,12 +11,12 @@
 
 #include "game.h"
 
-Game::Game() {
+Game::Game(float fps) {
 	isRunning = true;
 	//SDL_Event event;
 	//KeyHandler keyHandler;
 	// float FPS = 60;
-	FRAME_TIME = (1.0f / FPS) * 1000.0f;  // milliseconds per frame
+	FRAME_TIME = (1.0f / fps) * 1000.0f;  // milliseconds per frame
 	clock = 0;
 	deltaTime = 0;
 	renderDelay = 0;
@@ -45,8 +45,6 @@ void Game::Execute(SDL_Renderer *SDLRenderer) {
 
 		static Player shadowPlayer;
 		shadowPlayer.LoadSpriteTexture(SDLRenderer);
-
-		//SDL_Texture *spriteSheet = LoadTexture("sprite.bmp", SDLRenderer);
 
 		clock = SDL_GetTicks();
 		while (isRunning) {	// while window is running

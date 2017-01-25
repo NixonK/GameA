@@ -16,7 +16,7 @@ int main(int argc, char * argv[]) {
 	if (!(mainUI.Init()))
 		return -1;
 
-	Game mainGame;
+	Game mainGame(UserInterface::ScreenProperties::FPS);
 
 	mainGame.Execute(mainUI.GetRenderer());
 

@@ -29,12 +29,12 @@ enum class Movement : unsigned char {
  */
 typedef std::underlying_type<Movement>::type uMovementType;
 
-inline uMovementType& operator|=(uMovementType& a, Movement b) {
+inline uMovementType& operator|=(uMovementType& a, const Movement b) {
 	a |= static_cast<uMovementType>(b);
 	return a;
 }
 
-inline uMovementType operator&(uMovementType a, Movement b) {
+inline uMovementType operator&(const uMovementType a, const Movement b) {
 	return a & static_cast<uMovementType>(b);
 }
 

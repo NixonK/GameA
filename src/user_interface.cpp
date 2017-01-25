@@ -12,13 +12,7 @@
 
 UserInterface::UserInterface() {
 	window = nullptr;
-	//const int INIT_SCREEN_WIDTH;
-	//const int INIT_SCREEN_HEIGHT;
-	screenWidth = NULL;
-	screenHeight = NULL;
-	//const float FPS;
 	renderer = nullptr;
-	imgFlags = NULL;
 }
 
 UserInterface::~UserInterface() {
@@ -35,16 +29,15 @@ bool UserInterface::Init() {
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 		return false;
 
-	imgFlags = IMG_INIT_PNG;
-	if (IMG_Init(imgFlags) != imgFlags)
-		std::cout << "Erro: " << IMG_GetError() << std::endl;
+	if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG)
+		std::cout << "Error with initializing PNG support: " << IMG_GetError() << std::endl;
 
 	if ((window = SDL_CreateWindow(
 		"GameA TEST",				// window title
 		SDL_WINDOWPOS_CENTERED,		// initial x position
 		SDL_WINDOWPOS_CENTERED,		// initial y position
-		INIT_SCREEN_WIDTH,			// width, in pixels
-		INIT_SCREEN_HEIGHT,			// height, in pixels
+		ScreenProperties::INIT_SCREEN_WIDTH,			// width, in pixels
+		ScreenProperties::INIT_SCREEN_HEIGHT,		// height, in pixels
 		SDL_WINDOW_RESIZABLE)) == NULL)
 		return false;
 

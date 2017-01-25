@@ -10,11 +10,23 @@
 //
 
 #include "player.h"
+#include "user_interface.h"
 
 Player::Player() {
+	// Sprite sheet file name.
+	SPRITE_SHEET_FILENAME = "sprite.png";
+
+	// Original sprite sheet width and height.
+	SPRITE_SHEET_WIDTH = 24;
+	SPRITE_SHEET_HEIGHT = 28;
+
+	// Sprite width and height based on sprite sheet sizes.
 	SPRITE_WIDTH = SPRITE_SHEET_WIDTH / 3;
 	SPRITE_HEIGHT = SPRITE_SHEET_HEIGHT / 2;
+
+	// Sprite enlargement (because original sheet is very small).
 	SPRITE_GROW = 4;
+
 	spriteState = 0;
 
 	spriteStateRect;
@@ -24,7 +36,7 @@ Player::Player() {
 
 	spriteLocRect;
 	locX = 0;
-	locY = (double) (INIT_SCREEN_HEIGHT - (SPRITE_HEIGHT * SPRITE_GROW));
+	locY = (double) (UserInterface::ScreenProperties::INIT_SCREEN_HEIGHT - (SPRITE_HEIGHT * SPRITE_GROW));
 	UpdateLocVariables();
 	spriteLocRect.w = SPRITE_WIDTH * SPRITE_GROW;
 	spriteLocRect.h = SPRITE_HEIGHT * SPRITE_GROW;
@@ -33,16 +45,7 @@ Player::Player() {
 
 	screenFloor = spriteLocRect.y;
 
-	// const int numberJumps;
-	//const int jumpDelay;
-	jumpDelayCounter = jumpDelay;
-	jumpDelayed = false;
 	vertVel = 0.0;
-	//const double leanDistance;
-	//const double lungeDistance;
-	//const double jumpDistance;
-	//const double jumpStrength;
-	//const double gravity;
 }
 
 Player::~Player() {
@@ -53,14 +56,9 @@ Player::~Player() {
 		std::cout << "player deleted" << std::endl;
 }
 
-void Player::LoadSpriteTexture(SDL_Renderer *spriteRenderer) {
-	spriteSheet = LoadTexture(SDL_GetBasePath() + SPRITE_SHEET_FILENAME, spriteRenderer);
-}
-
 void Player::AttemptJump() {
-	if (numberJumps > 0 && !jumpDelayed) {
+	if (numberJumps > 0) {
 		numberJumps--;
-		jumpDelayed = true;
 		vertVel = jumpStrength;
 	}
 }
@@ -164,19 +162,11 @@ void Player::UpdateLocRect() {
 		numberJumps++;
 	}
 
-	if (jumpDelayed) {
-		jumpDelayCounter--;
-		if (jumpDelayCounter == 0) {
-			jumpDelayCounter = jumpDelay;
-			jumpDelayed = false;
-		}
-	}
 	UpdateLocVariables();
 	std::cout << "x: " << locX << " y: " << locY <<
 		" state: " << spriteState <<
 		" vertVel: " << vertVel <<
-		" IsOffGround: " << IsOffGround() <<
-		" jumpDelayCounter: " << jumpDelayCounter << std::endl;
+		" IsOffGround: " << IsOffGround() << std::endl;
 	//std::cout << static_cast<int>(Movement::JUMP) << std::endl;
 }
 
@@ -198,33 +188,23 @@ void Player::GiveInstruction(uMovementType moveFlags) {
 		this->AttemptJump();
 	}
 
-	if (moveFlags & Movement::STOP) {
+	if (moveFlags & Movement::LEFT && moveFlags & Movement::RIGHT) {
 		this->StopSprite();
 	} else if (moveFlags & Movement::LEFT) {
 		this->MoveSprite('L');
 	} else if (moveFlags & Movement::RIGHT) {
 		this->MoveSprite('R');
+	} else {
+		this->StopSprite();
 	}
 
 	this->UpdateLocRect();
-}
-
-SDL_Rect Player::GetStateRect() {
-	return spriteStateRect;
 }
 
 SDL_Rect Player::GetQueueStateRect() {
 	return stateQueue.front();
 }
 
-SDL_Rect Player::GetLocRect() {
-	return spriteLocRect;
-}
-
 SDL_Rect Player::GetQueueLocRect() {
 	return locationQueue.front();
-}
-
-SDL_Texture *Player::GetSpriteSheet() {
-	return spriteSheet;
 }

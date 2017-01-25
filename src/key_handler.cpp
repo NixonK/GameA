@@ -35,19 +35,13 @@ uMovementType KeyHandler::GetInstructions() {
 	if (IsPressed(SDLK_SPACE)) {
 		moveState |= Movement::JUMP;
 	}
-
-	if (IsPressed(SDLK_a) && IsPressed(SDLK_d)) {
-		// both 'a' and 'd' pressed
-		moveState |= Movement::STOP;
-	} else if (IsPressed(SDLK_a)) {
-		// only 'a' (left) pressed
+	if (IsPressed(SDLK_a)) {
+		// 'a' (left) pressed
 		moveState |= Movement::LEFT;
-	} else if (IsPressed(SDLK_d)) {
-		// only 'd' (right) pressed
+	}
+	if (IsPressed(SDLK_d)) {
+		// 'd' (right) pressed
 		moveState |= Movement::RIGHT;
-	} else if (IsReleased(SDLK_a) && IsReleased(SDLK_d)) {
-		// both released
-		moveState |= Movement::STOP;
 	}
 
 	return moveState;
