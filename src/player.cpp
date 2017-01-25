@@ -13,6 +13,20 @@
 #include "user_interface.h"
 
 Player::Player() {
+	// Sprite sheet file name.
+	SPRITE_SHEET_FILENAME = "sprite.png";
+
+	// Original sprite sheet width and height.
+	SPRITE_SHEET_WIDTH = 24;
+	SPRITE_SHEET_HEIGHT = 28;
+
+	// Sprite width and height based on sprite sheet sizes.
+	SPRITE_WIDTH = SPRITE_SHEET_WIDTH / 3;
+	SPRITE_HEIGHT = SPRITE_SHEET_HEIGHT / 2;
+
+	// Sprite enlargement (because original sheet is very small).
+	SPRITE_GROW = 4;
+
 	spriteState = 0;
 
 	spriteStateRect;
@@ -40,10 +54,6 @@ Player::~Player() {
 	int i = 0;
 	for (i; i < 1000; i++)
 		std::cout << "player deleted" << std::endl;
-}
-
-void Player::LoadSpriteTexture(SDL_Renderer *spriteRenderer) {
-	spriteSheet = UserInterface::LoadTexture(SDL_GetBasePath() + SPRITE_SHEET_FILENAME, spriteRenderer);
 }
 
 void Player::AttemptJump() {
@@ -191,22 +201,10 @@ void Player::GiveInstruction(uMovementType moveFlags) {
 	this->UpdateLocRect();
 }
 
-SDL_Rect Player::GetStateRect() {
-	return spriteStateRect;
-}
-
 SDL_Rect Player::GetQueueStateRect() {
 	return stateQueue.front();
 }
 
-SDL_Rect Player::GetLocRect() {
-	return spriteLocRect;
-}
-
 SDL_Rect Player::GetQueueLocRect() {
 	return locationQueue.front();
-}
-
-SDL_Texture *Player::GetSpriteSheet() {
-	return spriteSheet;
 }
