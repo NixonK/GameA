@@ -12,21 +12,14 @@
 #include "player.h"
 #include "user_interface.h"
 
-Player::Player() {
-	// Sprite sheet file name.
-	SPRITE_SHEET_FILENAME = "sprite.png";
-
-	// Original sprite sheet width and height.
-	SPRITE_SHEET_WIDTH = 24;
-	SPRITE_SHEET_HEIGHT = 28;
-
-	// Sprite width and height based on sprite sheet sizes.
-	SPRITE_WIDTH = SPRITE_SHEET_WIDTH / 3;
-	SPRITE_HEIGHT = SPRITE_SHEET_HEIGHT / 2;
-
-	// Sprite enlargement (because original sheet is very small).
-	SPRITE_GROW = 4;
-
+Player::Player() : Sprite(
+	"sprite.png",	// SPRITE_SHEET_FILENAME
+	24,				// SPRITE_SHEET_WIDTH
+	28,				// SPRITE_SHEET_HEIGHT
+	8,				// SPRITE_WIDTH
+	14,				// SPRITE_HEIGHT
+	4				// SPRITE_GROW
+) {
 	spriteState = 0;
 
 	spriteStateRect;

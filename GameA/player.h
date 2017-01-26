@@ -21,7 +21,7 @@ private:
 	int spriteState;
 
 	// Queue containing location and state rectangles.
-	static const int QUEUE_SIZE = 10;
+	const int QUEUE_SIZE = 10;
 	std::queue<SDL_Rect> locationQueue;
 	std::queue<SDL_Rect> stateQueue;
 
