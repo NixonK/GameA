@@ -43,7 +43,7 @@ void Game::Execute(SDL_Renderer *SDLRenderer) {
 	try {
 		mainPlayer.LoadSpriteTexture(SDLRenderer);
 
-		static Player shadowPlayer;
+		Player shadowPlayer;
 		shadowPlayer.LoadSpriteTexture(SDLRenderer);
 
 		clock = SDL_GetTicks();

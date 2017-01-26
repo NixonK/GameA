@@ -19,18 +19,18 @@ protected:
 	SDL_Texture *spriteSheet;
 
 	// Sprite sheet file name.
-	std::string SPRITE_SHEET_FILENAME;
+	const std::string SPRITE_SHEET_FILENAME;
 
 	// Original sprite sheet width and height.
-	int SPRITE_SHEET_WIDTH;
-	int SPRITE_SHEET_HEIGHT;
+	const int SPRITE_SHEET_WIDTH;
+	const int SPRITE_SHEET_HEIGHT;
 
 	// Sprite width and height based on sprite sheet sizes.
-	int SPRITE_WIDTH;
-	int SPRITE_HEIGHT;
+	const int SPRITE_WIDTH;
+	const int SPRITE_HEIGHT;
 
 	// Sprite enlargement (because original sheet is very small).
-	int SPRITE_GROW;
+	const int SPRITE_GROW;
 
 	// Sprite sheet location on the screen and location of the current sprite on the sprite sheet.
 	SDL_Rect spriteStateRect;
@@ -39,8 +39,22 @@ protected:
 public:
 	/**
 	* Constructor for sprite class, initialise all the physics variables.
+	* 
+	* @param spriteSheetFilename,	the sprite's sprite sheet filename.
+	* @param spriteSheetWidth,		the sprite sheet width.
+	* @param spriteSheetHeight,		the sprite sheet height.
+	* @param spriteWidth,			the width of a single sprite on the sheet.
+	* @param spriteHeight,			the height of a single sprite on the sheet.
+	* @param spriteGrow,			the sprite enlargement factor.
 	*/
-	Sprite() {};
+	Sprite(std::string spriteSheetFilename, int spriteSheetWidth, int spriteSheetHeight, int spriteWidth, int spriteHeight, int spriteGrow) :
+		SPRITE_SHEET_FILENAME(spriteSheetFilename),
+		SPRITE_SHEET_WIDTH(spriteSheetWidth),
+		SPRITE_SHEET_HEIGHT(spriteSheetHeight),
+		SPRITE_WIDTH(spriteWidth),
+		SPRITE_HEIGHT(spriteHeight),
+		SPRITE_GROW(spriteGrow)
+		{};
 
 	/**
 	* Destructor for sprite class, destroy texture and point them to nullptr.
