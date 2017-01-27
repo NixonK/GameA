@@ -36,6 +36,7 @@ if [%SDL2image_LIB%] == [] (
 REM Compile with CMake configuration.
 cmake -G "Visual Studio 14 2015 Win64" ^
 	-DCMAKE_BUILD_TYPE=Release ^
+	-DCMAKE_CXX_FLAGS_RELEASE="%CMAKE_CXX_FLAGS_RELEASE% /MT" ^
 	-DCMAKE_PREFIX_PATH="%SDL2_LIB%;%SDL2image_LIB%" ^
 	-DSHOW_CONSOLE=%SHOW_CONSOLE% ^
 	%~dp0 || exit /b 1
