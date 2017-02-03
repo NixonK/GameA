@@ -31,13 +31,13 @@ protected:
 	float FRAME_TIME;
 
 	// Clock current milliseconds after starting the game
-	Uint32 clock;
+	float clock;
 
 	// Difference in time.
-	Uint32 deltaTime;
+	float deltaTime;
 
 	// Delay inbetween renders.
-	Uint32 renderDelay;
+	float renderDelay;
 
 	// Player object.
 	Player mainPlayer;
@@ -46,7 +46,7 @@ public:
 	/**
 	 * Game class constructor, initialise frame control variables and isRunning.
 	 */
-	Game(float fps);
+	Game(int fps);
 
 	/**
 	 * Game class destructor.

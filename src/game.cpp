@@ -11,15 +11,15 @@
 
 #include "game.h"
 
-Game::Game(float fps) {
+Game::Game(int fps) {
 	isRunning = true;
 	//SDL_Event event;
 	//KeyHandler keyHandler;
 	// float FPS = 60;
 	FRAME_TIME = (1.0f / fps) * 1000.0f;  // milliseconds per frame
-	clock = 0;
-	deltaTime = 0;
-	renderDelay = 0;
+	clock = 0.0f;
+	deltaTime = 0.0f;
+	renderDelay = 0.0f;
 }
 
 Game::~Game() {
@@ -46,10 +46,10 @@ void Game::Execute(SDL_Renderer *SDLRenderer) {
 		Player shadowPlayer;
 		shadowPlayer.LoadSpriteTexture(SDLRenderer);
 
-		clock = SDL_GetTicks();
+		clock = static_cast<float>(SDL_GetTicks());
 		while (isRunning) {	// while window is running
-			deltaTime = SDL_GetTicks() - clock;
-			clock = SDL_GetTicks();
+			deltaTime = static_cast<float>(SDL_GetTicks() - clock);
+			clock = static_cast<float>(SDL_GetTicks());
 
 			while (SDL_PollEvent(&event) != 0) {
 				if (event.type == SDL_QUIT) {
@@ -89,12 +89,12 @@ void Game::Execute(SDL_Renderer *SDLRenderer) {
 				&(shadowPlayer.GetQueueStateRect()), &(shadowPlayer.GetQueueLocRect()));
 
 			SDL_RenderPresent(SDLRenderer);
-			renderDelay -= (FRAME_TIME);
+			renderDelay -= FRAME_TIME;
 
 
 			renderDelay += deltaTime;
 			if (deltaTime < FRAME_TIME) {
-				SDL_Delay(FRAME_TIME - deltaTime);
+				SDL_Delay(static_cast<Uint32>(FRAME_TIME - deltaTime));
 			}
 		}
 	}
